@@ -1,0 +1,1852 @@
+<html>
+
+<head>
+	<meta charset="UTF-8">
+
+	<!-- Versão 2.7 12/04/24-->
+        <!--                    
+        //#TAG update 12/04/24 - Alteração das taxas despachante para empreendimento ( "#TAG update 12/04/24" localiza os campos com as alterações )
+        
+        --!>
+	<!-- direitos reservados para ASPEN INFORMACOES CADASTRAIS COBRANÇA LTDA-->
+	<!-- a reprodução ou utilização deste código ou página sem autorização -->
+	<script src='javascript/jquery.min.js' type="text/javascript"></script>
+	<script src="javascript/hora.js" type="text/javascript"></script>
+	<script src="javascript/jquery.maskMoney.min.js" type="text/javascript"></script>
+	<script src="javascript/apenasletras.js" type="text/javascript"></script>
+
+
+	<script type="text/javascript">
+		$('.myitem').each(function () {
+			if ($(this).hasClass('selected')) {
+				$('.myImage').attr('src') = 'path-to-images/image' + $(this).attr('id') + '.jpg';
+			}
+		});
+		function formatar(mascara, documento) {
+			var i = documento.value.length;
+			var saida = mascara.substring(0, 1);
+			var texto = mascara.substring(i)
+
+			if (texto.substring(0, 1) != saida) {
+				documento.value += texto.substring(0, 1);
+			}
+
+			function masktel() {
+				var tel = jQuery("#nuTelefoneCelular").val();
+				if (tel != undefined) {
+					if (tel.length > 1) {
+						tel = mascara_global('(##)#####-####', tel);
+						tel = '(' + tel;
+					}
+				}
+				jQuery("#nuTelefoneCelular").val(tel);
+			}
+		}
+	</script>
+	<style type="text/css">
+		input[type=text]:focus {
+			background-color: lightblue;
+		}
+
+		input[type=text] {
+			border: none;
+			background-color: transparent;
+			border-bottom: 2px solid #a9a9a9;
+			text-transform: uppercase;
+		}
+
+		select {
+			width: 100%;
+			border: none;
+			border-radius: 4px;
+			background-color: transparent;
+			border-bottom: 2px solid #a9a9a9;
+		}
+
+		corpoCSS {
+			/*          style="font-size: 10px; font-family: Arial;background-color: transparent;" */
+			font-size: 10px;
+			font-family: Arial;
+			background-color: transparent;
+		}
+
+		cabecalhoCSS {
+			/* style="font-size: 8px; font-family: Arial;background-color: transparent;" */
+			font-size: 8px;
+			font-family: Arial;
+			background-color: transparent;
+		}
+
+		qrcodeCSS {
+			/* style="font-size: 15px; font-family: Arial;background-color: transparent;" */
+			font-size: 15px;
+			font-family: Arial;
+			background-color: transparent;
+		}
+
+		body {
+			margin: 1px;
+			padding: 1px;
+			background-position: center;
+			background-image: url(img/marca.png);
+			background-repeat: no-repeat;
+
+		}
+
+		* {
+			box-sizing: border-box;
+			-moz-box-sizing: border-box;
+		}
+
+		.page {
+			width: 210mm;
+			min-height: 280mm;
+			padding: 0.0cm;
+			margin: 0.5cm auto;
+			border: 0px solid;
+			border-radius: 0px;
+			box-shadow: 0 0 0px rgba(0, 0, 0, 0.1);
+			display: block;
+		}
+
+		.subpage {
+			padding: 0.0cm;
+			border: 2px black solid;
+			height: 297mm;
+			outline: 0.5cm solid;
+			display: block !important;
+		}
+
+		@page {
+			size: A4;
+			margin: 25px;
+		}
+
+		@media print {
+			#BTprint {
+				display: none !important;
+			}
+
+			.page {
+				margin: 0;
+				border: initial;
+				border-radius: initial;
+				width: initial;
+				min-height: initial;
+				box-shadow: initial;
+				background: initial;
+				page-break-after: always;
+				display: block !important;
+			}
+		}
+
+		#form1 .book .page .subpage table tr th {
+			text-align: center;
+		}
+
+		#divAqConst {
+			font-size: 10px;
+			display: none;
+			/* Inicialmente oculta a div */
+			//position: absolute; /* Fixa a posição da div na tela */
+			//bottom: 25%; /* Distância do rodapé */
+			//left: 63%; /* Alinha a div horizontalmente */
+			//transform: translateX(-50%); /* Centraliza horizontalmente */
+			background-color: rgba(255, 255, 0, 0.3);
+			/* Fundo amarelo com 30% de transparência */
+			//border: 1px solid black; /* Borda preta */
+			//width: 16%; /* Largura de 16% da largura do elemento pai */
+			//height: 8%; /* Altura de 8% da altura do elemento pai */
+			//padding: 10px;
+		}
+
+		#divEMPquest {
+			width: 600px;
+			height: 200px;
+			background-color: yellow;
+			border: 3px solid black;
+			display: none;
+			position: fixed;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+			text-align: left;
+		}
+	</style>
+	<title>Aprovacao_</title>
+	<script>
+		window.addEventListener('beforeprint', function() {
+		  var novoTitulo = 'Aprovacao_' + document.getElementById('NOME1').value.trim();
+		  document.title = novoTitulo;
+		});
+	  </script>
+</head>
+
+<body>
+
+	<!--
+		<label id="Xdata" ></label>
+        <label id="Xhora" ></label>
+		-->
+	<div align="center">
+		<form action="" id="form1" method="get" name="form1">
+			<div class="page">
+				<table align="center" cellpadding="0" cellspacing="0" style="margin-bottom: 0cm">
+					<colgroup>
+						<col width="23" />
+						<col width="748" />
+						<col width="19" />
+					</colgroup>
+					<thead>
+						<tr>
+							<th height="23" scope="col" style="border: none; padding: 0cm;" valign="top" width="716">
+
+								<table width="100%" border="0" cellpadding="0" cellspacing="0"
+									style="margin-bottom: 0cm">
+									<tr>
+										<td width="10%" rowspan="6" align="center" valign="middle">
+											<div align="center"><img src="img/logo1.png" alt="a" name="Image1"
+													width="105" height="100" border="0" align="left" id="Image1" />
+											</div>
+										</td>
+										<td colspan="4">
+											<div align="center" class="style1"><span
+													style="orphans: 0; widows: 0; margin-top: 0.00cm; background: transparent">
+													<font size="3" style="font-size: 12pt">
+														<font size="4" style="font-size: 15pt"><span
+																style="letter-spacing: -0.1pt"><u><b>ASPEN</b></u></span><strong><u>
+																	- </u></strong><span
+																style="letter-spacing: -0.1pt"><u><b>CORRESPONDENTE
+																		BANC&Aacute;RIO</b></u></span></font>
+													</font>
+												</span></div>
+										</td>
+										<td width="10%" rowspan="6" align="center" valign="middle">
+											<div align="center"><img src="img/caixaaqui.png" alt="caixaaqui"
+													name="Image2" width="81" height="79" border="0" align="texttop"
+													id="Image2" /></div>
+										</td>
+									</tr>
+									<tr>
+										<td width="20%"
+											style="font-size: 8px; font-family: Arial;background-color: transparent;">
+											Amanda (051) 9-9515-4622</td>
+										<td width="20%"
+											style="font-size: 8px; font-family: Arial;background-color: transparent;">
+											Rochele / Grace (051) 9-9141-3897</td>
+										<td width="20%"
+											style="font-size: 8px; font-family: Arial;background-color: transparent;">
+											<div align="right">Escrit&oacute;rio (51)3031-3792</div>
+										</td>
+										<td width="20%">&nbsp;</td>
+									</tr>
+									<tr>
+										<td colspan="4"><span
+												style="font-size: 8px; font-family: Arial;background-color: transparent;"></span><span
+												class="style1"></span><span class="style1"></span></td>
+									</tr>
+									<tr>
+										<td style="font-size: 8px; font-family: Arial;background-color: transparent;">
+											Canoas/RS</td>
+										<td colspan="3"
+											style="font-size: 8px; font-family: Arial;background-color: transparent;"><a href="https://maps.app.goo.gl/5CWTsQ2Z7sbgnVhMA">
+											R. Gon&ccedil;alves dias, 88 - sala 807 - Centro, Canoas - RS,
+											92010-050 (Matriz)</a></td>
+									</tr>
+									<tr>
+										<td style="font-size: 8px; font-family: Arial;background-color: transparent;">
+											Nova Santa Rita/RS</td>
+										<td colspan="3"
+											style="font-size: 8px; font-family: Arial;background-color: transparent;">
+											Av
+											Santa rita 1101, loja 2, B. Centro, Nova Santa Rita - RS, 92480-970 (Filial)</td>
+									</tr>
+									<tr>
+										<td style="font-size: 8px; font-family: Arial;background-color: transparent;">
+											</td>
+										<td colspan="3"
+											style="font-size: 8px; font-family: Arial;background-color: transparent;">
+										</td>
+									</tr>
+									<tr>
+										<td align="center" valign="middle">&nbsp;</td>
+										<td colspan="4"
+											style="font-size: 8px; font-family: Arial;background-color: transparent;">
+											<div align="center"
+												style="font-size: 8px; font-family: Arial;background-color: transparent;">
+												negocios@correspondenteaspen.com</div>
+										</td>
+										<td><span class="style1"></span></td>
+									</tr>
+									<tr>
+										<td height="39" align="center" valign="middle">&nbsp;</td>
+										<td>
+											<table width="100%" border="0" cellspacing="0" cellpadding="0">
+												<tr>
+													<td width="28%" class="style1">
+														<div align="right"><img src="img/insta.png" width="10"
+																height="10" /></div>
+													</td>
+													<td width="72%"><span
+															style="font-size: 8px; font-family: Arial;background-color: transparent;">@meufinanciamentoaspen</span>
+													</td>
+												</tr>
+											</table>
+										</td>
+										<td>
+											<table width="100%" border="0" cellspacing="0" cellpadding="0">
+												<tr>
+													<td width="28%" class="style1">
+														<div align="right"><img src="img/fb.png" width="10"
+																height="10" /></div>
+													</td>
+													<td width="72%"><span
+															style="font-size: 8px; font-family: Arial;background-color: transparent;">AspenCorrespondente</span>
+													</td>
+												</tr>
+											</table>
+										</td>
+										<td>
+											<table width="100%" border="0" cellspacing="0" cellpadding="0">
+												<tr>
+													<td width="28%" class="style1">
+														<div align="right"><img src="img/youtube.png" width="10"
+																height="11" /></div>
+													</td>
+													<td width="72%"><span
+															style="font-size: 8px; font-family: Arial;background-color: transparent;">AspenCorrespondente</span>
+													</td>
+												</tr>
+											</table>
+										</td>
+										<td>
+											<table width="100%" border="0" cellspacing="0" cellpadding="0">
+												<tr>
+													<td width="28%" class="style1">
+														<div align="right"><img src="img/tw.png" width="10"
+																height="10" /></div>
+													</td>
+													<td width="72%"
+														style="font-size: 8px; font-family: Arial;background-color: transparent;">
+														@AspenCCA</td>
+												</tr>
+											</table>
+										</td>
+										<td><span class="style1"></span></td>
+									</tr>
+								</table>
+							</th>
+						</tr>
+					</thead>
+
+					<tr valign="top">
+						<td width="716" height="100%" style="border: none; padding: 0">
+							<table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom: 0cm">
+								<colgroup>
+									<col width="19*" />
+									<col width="221*" />
+									<col width="16*" />
+								</colgroup>
+								<tr valign="top">
+									<td width="100%" height="100%" style="border: none; padding: 0cm">
+
+										<label id="label0001" name="label0001"
+											style="font-size: 15px; text-align: center; font-family: Arial;background-color: transparent;"></label>
+										<p align="justify">
+											<strong
+												style="font-size: 10px; font-family: Arial;background-color: transparent;"></strong>
+											<br>
+										</p>
+										<p align="justify">
+											<b
+												style="font-size: 10px; font-family: Arial;background-color: transparent;">Atenção.:
+												Este
+												documento, possui informações protegidas sob sigilo
+												bancário, amparadas pela lei LGPD Lei Geral de Proteção de Dados, e
+												não está autorizada a divulgação sem o consentimento do titular.
+												Em qualquer hipótese que haja o descaminho deste documento, o
+												descarte deste material deve ser imediato, sob sanções
+												legais e administrativas ao portador.<br>
+											</b>
+											<a aligin="justify"
+												style="color: red;font-size: 10px; font-family: Arial;background-color: transparent;">
+												<br><b>IMPORTANTE.:</b> A confirmação da proposta ocorre automaticamente com o envio dos documentos para a próxima etapa, incluindo um QR-Code com orientações para a entrega, leia as instruções e documentos necessários no manual anexo. <b>Favor informar sobre quaisquer ajustes antes de prosseguir.</b>
+
+												<br>
+											</a>
+										</p>
+									</td>
+								</tr>
+								<tr>
+									<td height="100%" style="border: none; padding: 0cm">
+									</td>
+								</tr>
+								<tr>
+									<td width="100%" height="100%" style="border: none; padding: 0cm">
+										<p align="justify">
+											<em>
+												<b
+													style="font-size: 10px; font-family: Arial;background-color: transparent;">Prezados,
+													&eacute; com prazer venho vos informar, que o cr&eacute;dito
+													solicitado encontra-se aprovado conforme as condi&ccedil;&otilde;es
+													a seguir:</b>
+											</em>
+										</p>
+									</td>
+								</tr>
+								<tr valign="top">
+									<td width="100%" height="100%" style="border: none; padding: 0cm">
+										<table cellpadding="4" cellspacing="0" width="601">
+											<colgroup>
+												<col width="593" />
+											</colgroup>
+											<tbody>
+												<tr>
+													<td style="border: none; padding: 0cm" valign="top" width="593">
+														<p align="left">
+															</br>
+															<label
+																style="font-size: 10px; font-family: Arial;background-color: transparent;font-weight: bold;">Banco
+																.: </label>
+															<select
+																style="font-size: 10px; font-family: Arial;background-color: transparent; font-weight: bold;"
+																name="selectBANCO" size="1">
+																<option value="CAIXA" selected="selected">CAIXA</option>
+																<option value="SANTANDER">SANTANDER</option>
+																<option value="ITAU">ITAU</option>
+																<option value="BRADESCO">BRADESCO</option>
+																<option value="BANRISUL">BANRISUL</option>
+																<option value="BANCO DO BRASIL">BANCO DO BRASIL</option>
+															</select>
+														</p>
+													</td>
+												</tr>
+												<tr>
+													<td height="18" style="border: none; padding: 0cm" valign="top"
+														width="593">
+														<p align="left">
+															<label
+																style="font-size: 10px; font-family: Arial;background-color: transparent;font-weight: bold;">Ag&ecirc;ncia
+																.:</label>
+															<label>
+																<select
+																	style="color: darkblue; font-size: 10px; font-family: Arial;background-color: transparent;font-weight: bold;"
+																	name="select3" required="true" size="1">
+																	<option value="-">-</option>
+																	<option value="4429 - Rio Branco">4429 - Rio Branco
+																	</option>
+																	<option value="3714 - Nova Santa Rita">3714 - Nova
+																		Santa Rita</option>
+																	<option value="2182 - Coronel Vicente">2182 -
+																		Coronel Vicente</option>
+																	<option value="0440 - V-Comar">0440 - V-Comar
+																	</option>
+																	<option value="0463 - Canoas Centro">0463 - Canoas
+																		Centro</option>
+																	<option value="PAB - Justica do trabalho">3973 - PAB Canoas</option>
+																	<option value="3240 - Canoas Shopping">3240 - Canoas
+																		Shopping</option>
+																	<option value="3454 - Santos Ferreira">3454 - Santos
+																		Ferreira</option>
+																	<option value="3142 - Igara">3142 - Igara</option>
+																	<option value="0433 - Vila Fernandes">0433 - Vila
+																		Fernandes</option>
+																	<option value="2266 - Capao da Canoa">2266 - Capao
+																		da Canoa</option>
+																</select>
+															</label>
+														</p>
+													</td>
+												</tr>
+											</tbody>
+										</table>
+									</td>
+								</tr>
+								<tr valign="top">
+									<td width="100%" height="100%" style="border: none; padding: 0cm">
+										<p align="left">&nbsp;</p>
+									</td>
+								</tr>
+								<tr valign="top">
+									<td width="100%" height="100%" style="border: none; padding: 0cm">
+										<p align="left">
+											<b
+												style="font-size: 10px; font-family: Arial;background-color: transparent;">Proponentes
+												compradores:</b>
+										</p>
+									</td>
+								</tr>
+								<tr valign="top">
+									<td width="100%" height="100%" style="border: none; padding: 0cm">
+										<table cellpadding="4" cellspacing="0" width="100%">
+											<colgroup>
+												<col width="184*" />
+												<col width="72*" />
+											</colgroup>
+											<tbody>
+												<tr valign="top">
+													<td style="border: none; padding: 0cm" width="72%">
+														<p style="font-size: 10px; font-family: Arial;background-color: transparent;"
+															align="left">Nome.:</p>
+													</td>
+													<td style="border: none; padding: 0cm" width="28%">
+														<p style="font-size: 10px; font-family: Arial;background-color: transparent;"
+															align="left">CPF.:</p>
+													</td>
+												</tr>
+												<tr valign="top">
+													<td style="border: none; padding: 0cm" width="72%">
+														<p align="left">
+															<input
+																style="font-size: 10px; font-family: Arial;background-color: transparent;"
+																name="NOME1" type="text" required="true" id="NOME1"
+																size="60" onKeyPress="return ApenasLetras(event,this);"
+																onchange="atualizarTitulo();" />
+														</p>
+													</td>
+													<td style="border: none; padding: 0cm" width="28%">
+														<p align="left">
+															<input
+																style="font-size: 10px; font-family: Arial;background-color: transparent;"
+																name="CPF1" type="text" maxlength="14" required="true"
+																onKeyPress="return sonumerosinput();"
+																onKeyUp="formatar('###.###.###-##', this)" id="CPF1" />
+														</p>
+													</td>
+												</tr>
+												<tr valign="top">
+													<td style="border: none; padding: 0cm" width="72%">
+														<p align="left">
+															<input
+																style="font-size: 10px; font-family: Arial;background-color: transparent;"
+																name="NOME2" type="text" id="NOME2" size="60"
+																onKeyPress="return ApenasLetras(event,this);" />
+														</p>
+													</td>
+													<td style="border: none; padding: 0cm" width="28%">
+														<p align="left">
+															<input
+																style="font-size: 10px; font-family: Arial;background-color: transparent;"
+																name="CPF2" type="text"
+																onKeyPress="return sonumerosinput();"
+																onKeyUp="formatar('###.###.###-##', this)" id="CPF2"
+																maxlength="14" />
+														</p>
+													</td>
+												</tr>
+												<tr valign="top">
+													<td style="border: none; padding: 0cm" width="72%">
+														<p align="left">
+															<input
+																style="font-size: 10px; font-family: Arial;background-color: transparent;"
+																name="NOME3" type="text" id="NOME3" size="60"
+																onKeyPress="return ApenasLetras(event,this);" />
+														</p>
+													</td>
+													<td style="border: none; padding: 0cm" width="28%">
+														<p align="left">
+															<input
+																style="font-size: 10px; font-family: Arial;background-color: transparent;"
+																name="CPF3" type="text" id="CPF3"
+																onKeyPress="return sonumerosinput();"
+																onKeyUp="formatar('###.###.###-##', this)"
+																maxlength="14" />
+														</p>
+													</td>
+												</tr>
+											</tbody>
+										</table>
+									</td>
+								</tr>
+								<tr valign="top">
+									<td width="100%" height="100%" style="border: none; padding: 0cm">
+										<p align="left">&nbsp;</p>
+									</td>
+								</tr>
+								<tr valign="top">
+									<td width="100%" height="100%" style="border: none; padding: 0cm">
+										<p align="left">
+											<b
+												style="font-weight: lighter; font-size: 15px; font-family: Arial;background-color: transparent;">Dados
+												da proposta:</b>
+										</p>
+									</td>
+								</tr>
+								<tr valign="top">
+									<td width="100%" height="100%" style="border: none; padding: 0cm">
+										<table cellpadding="4" cellspacing="0" width="562">
+											<colgroup>
+												<col width="143" />
+												<col width="403" />
+											</colgroup>
+											<tbody>
+												<tr valign="top">
+													<td style="border: none; padding: 0cm" width="143">
+														<p align="left">
+															<b
+																style="font-size: 13px; font-family: Arial;background-color: transparent;">Modalidade.:</b>
+														</p>
+													</td>
+													<td style="border: none; padding: 0cm" width="403">
+														<p align="left">
+															<label>
+																<select required="true" id="select2" size="1"
+																	onclick="leituraParametros();monitorarSelect()"
+																	onChange="proximospassos(this.value)"
+																	style="font-weight: bold; font-size: 13px; font-family: Arial;background-color: rgba(0, 0, 0, 0.075);">
+																	<option selected="selected"
+																		value="nextStep/blank.png"></option>
+																	<option
+																		value="nextStep/ProximosPassos.PCVA.AqConstrucao.png">
+																		MCMV - Hab. Aq+Constru&ccedil;&atilde;o</option>
+																	<option
+																		value="nextStep/ProximosPassos.PCVA.Usado.png">
+																		MCMV - Hab. Usado</option>
+																	<option
+																		value="nextStep/ProximosPassos.PCVA.novo.png">
+																		MCMV - Hab. Novo (avulso)</option>
+																	<option
+																		value="nextStep/ProximosPassos.PCVA.Empreendimento.png">
+																		MCMV - Hab. Empreendimento</option>
+																	<option
+																		value="nextStep/ProximosPassos.PCVA.Leilao.png">
+																		MCMV - Hab. Leil&atilde;o</option>
+																	<option
+																		value="nextStep/ProximosPassos.PCVA.ConstrTerrProprio.png">
+																		MCMV - Hab. Constru&ccedil;&atilde;o Terr
+																		Pr&oacute;prio</option>
+																	<option
+																		value="nextStep/ProximosPassos.PCVA.AqConstrucao.png">
+																		Pr&oacute;-cotista - Hab.
+																		Aq+Constru&ccedil;&atilde;o</option>
+																	<option
+																		value="nextStep/ProximosPassos.PCVA.Usado.png">
+																		Pr&oacute;-cotista - Hab. Usado</option>
+																	<option
+																		value="nextStep/ProximosPassos.PCVA.novo.png">
+																		Pr&oacute;-cotista - Hab. (avulso)</option>
+																	<option
+																		value="nextStep/ProximosPassos.PCVA.Empreendimento.png">
+																		Pr&oacute;-cotista - Hab. Empreendimento
+																	</option>
+																	<option
+																		value="nextStep/ProximosPassos.PCVA.Leilao.png">
+																		Pr&oacute;-cotista - Hab. Leil&atilde;o</option>
+																	<option
+																		value="nextStep/ProximosPassos.PCVA.ConstrTerrProprio.png">
+																		Pr&oacute;-cotista - Hab.
+																		Constru&ccedil;&atilde;o Terr Pr&oacute;prio
+																	</option>
+																	<option
+																		value="nextStep/ProximosPassos.SBPE.Hab.AqConstrucao.png">
+																		SBPE - Hab. Aq+Constru&ccedil;&atilde;o</option>
+																	<option
+																		value="nextStep/ProximosPassos.SBPE.Hab.ConstrTerrProprio.png">
+																		SBPE - Hab. Constru&ccedil;&atilde;o Terr
+																		Pr&oacute;prio</option>
+																	<option
+																		value="nextStep/ProximosPassos.SBPE.Hab.Usado.png">
+																		SBPE - Hab. Usado</option>
+																	<option
+																		value="nextStep/ProximosPassos.SBPE.Hab.NovoAvulso.png">
+																		SBPE - Hab. Novo (avulso)</option>
+																	<option
+																		value="nextStep/ProximosPassos.SBPE.Hab.NovoEmpreendimento.png">
+																		SBPE - Hab. Empreendimento</option>
+																	<option
+																		value="nextStep/ProximosPassos.SBPE.Hab.Leilao.png">
+																		SBPE - Hab. Leil&atilde;o</option>
+																	<option
+																		value="nextStep/ProximosPassos.SBPE.LoteUrbanizado.png">
+																		SBPE - Lote urbanizado</option>
+																	<option
+																		value="nextStep/ProximosPassos.SBPE.CRF.png">
+																		SBPE - Credito Real Facil</option>
+																	<option
+																		value="nextStep/ProximosPassos.SBPE.Com.Novo.png">
+																		SBPE - Com. Imovel Novo avulso</option>
+																	<option
+																		value="nextStep/ProximosPassos.SBPE.Com.Usado.png">
+																		SBPE - Com. Imovel Usado</option>
+																</select>
+															</label>
+														</p>
+													</td>
+												</tr>
+												<tr valign="top">
+													<td style="border: none; padding: 0cm"><b
+															style="font-size: 10px; font-weight: bold; font-family: Arial;background-color: transparent;">Cidade
+															do im&oacute;vel.:</b></td>
+													<td style="border: none; padding: 0cm"><select name="selectCidades"
+															id="selectCidades" onclick="leituraParametros()">
+															<option value="">---</option>
+															<option value="cid.canoas">Canoas-RS</option>
+															<option value="cid.poa">Porto Alegre-RS</option>
+															<option value="cid.nsr">Nova Santa Rita-RS</option>
+															<option value="cid.esteio">Esteio-RS</option>
+															<option value="cid.sapucaia">Sapucaia-RS</option>
+															<option value="cid.nh">Novo Hamburgo-RS</option>
+															<option value="cid.viamao">Viamao-RS</option>
+															<option value="cid.saoleo">Sao Leopoldo-RS</option>
+															<option value="cid.capao">Capao da Canoa-RS</option>
+															<option value="cid.xangrila">Xangri-la-RS</option>
+															<option value="cid.cachoeirinha">Cachoeirinha-RS</option>
+															<option value="cid.gravatai">Gravatai-RS</option>
+															<option value="cid.gramado">Gramado-RS</option>
+															<option value="cid.canela">Canela-RS</option>
+															<option value="cid.osorio">Osorio-RS</option>
+															<option value="cid.tramandai">Tramandai-RS</option>
+														</select></td>
+												</tr>
+												<tr valign="top">
+													<td style="border: none; padding: 0cm" width="143;">
+														<p align="left">
+															<b
+																style="font-size: 10px; font-weight: bold; font-family: Arial;background-color: transparent;">Valor
+																Total do im&oacute;vel.:</b>
+														</p>
+													</td>
+													<td style="border: none; padding: 0cm" width="403">
+														<p align="left">
+															<input id="campo1" name="campo1"
+																onchange="leituraParametros()"
+																class="real input_geral real" type="text" size="60"
+																maxlength="15" required="true"
+																style="font-weight: bold; font-size: 10px; font-family: Arial;background-color: transparent;" />
+														</p>
+													</td>
+												</tr>
+												<tr valign="top">
+													<td style="border: none; padding: 0cm" width="143">
+														<p align="left">
+															<b
+																style="color:darkblue; font-weight: bold; font-size: 10px; font-family: Arial;background-color: transparent;">Valor
+																FINANCIADO .:</b>
+														</p>
+													</td>
+													<td style="border: none; padding: 0cm" width="403">
+														<p align="left">
+															<input name="campo2" id="campo2"
+																onchange="leituraParametros()" type="text"
+																class="real input_geral real" size="60" maxlength="15"
+																required="true"
+																style="color:darkblue; font-weight: bold; font-size: 10px; font-family: Arial;background-color: transparent;" />
+														</p>
+													</td>
+												</tr>
+												<tr valign="top">
+													<td style="border: none; padding: 0cm" width="143">
+														<p align="left">
+															<b
+																style="font-size: 10px; font-family: Arial;background-color: transparent;">Valor
+																FGTS .:</b>
+														</p>
+													</td>
+													<td style="border: none; padding: 0cm" width="403">
+														<p align="left">
+															<input name="campo3" id="campo3"
+																onchange="leituraParametros()" type="text"
+																class="real input_geral real" size="60" maxlength="15"
+																style="font-size: 10px; font-family: Arial;background-color: transparent;" />
+														</p>
+													</td>
+												</tr>
+												<tr valign="top">
+													<td style="border: none; padding: 0cm" width="143">
+														<p align="left">
+															<b
+																style="font-size: 10px; font-family: Arial;background-color: transparent;">Valor
+																subsidio.:</b>
+														</p>
+													</td>
+													<td style="border: none; padding: 0cm" width="403">
+														<p align="left">
+															<input name="campo4" id="campo4" type="text"
+																onchange="leituraParametros()"
+																class="real input_geral real" size="60" maxlength="15"
+																style="font-size: 10px; font-family: Arial;background-color: transparent;" />
+														</p>
+													</td>
+												</tr>
+												<tr valign="top">
+													<td style="border: none; padding: 0cm">
+														<b
+															style="font-size: 10px; font-family: Arial;background-color: transparent;">Total
+															de recursos BANCO.:</b>
+													</td>
+													<td style="border: none; padding: 0cm">
+														<input name="totalrecursosbanco" id="totalrecursosbanco"
+															type="text" readonly class="real input_geral real" size="60"
+															maxlength="15"
+															style="font-size: 10px; font-family: Arial;background-color: transparent;" />
+													</td>
+												</tr>
+												<tr valign="top">
+													<td style="border: none; padding: 0cm" width="143">
+														<p align="left">
+															<label
+																style="color:black; font-weight: bold; font-size: 10px; font-family: Arial;background-color: transparent;">Valor
+																entrada rec pr&oacute;prio.:</label>
+														</p>
+													</td>
+													<td style="border: none; padding: 0cm" width="403">
+														<p align="left"
+															style="font-weight: lighter; font-size: 10px; font-family: Arial;background-color: transparent;">
+															<input name="campo5" id="campo5" type="text"
+																class="real input_geral real" size="60" maxlength="15"
+																readonly
+																style="color: rgb(0, 0, 0); font-weight: bold;font-size: 10px; font-family: Arial;background-color: transparent;" />
+													</td>
+												</tr>
+												<tr valign="top">
+													<td style="border: none; padding: 0cm">&nbsp;</td>
+													<td style="border: none; padding: 0cm">&nbsp;</td>
+												</tr>
+												<tr valign="top">
+													<td style="border: none; padding: 0cm" width="143">
+														<p align="left">
+															<b
+																style="font-size: 10px; font-family: Arial;background-color: transparent;">Presta&ccedil;&atilde;o.:</b>
+														</p>
+													</td>
+													<td style="border: none; padding: 0cm" width="403">
+														<p align="left">
+															<input name="campo15" id="campo15"
+																class="real input_geral real" size="12" type="text"
+																maxlength="12"
+																style="font-size: 10px; font-family: Arial;background-color: transparent;"
+																required="true" />
+														</p>
+													</td>
+												</tr>
+												<tr valign="top">
+													<td style="border: none; padding: 0cm" width="143">
+														<p align="left">
+															<b
+																style="font-size: 10px; font-family: Arial;background-color: transparent;">Prazo.:</b>
+														</p>
+													</td>
+													<td style="border: none; padding: 0cm" width="403">
+														<p align="left">
+															<input name="campo6" id="campo6" type="text" required="true"
+																size="4" maxlength="3"
+																style="font-size: 10px; font-family: Arial;background-color: transparent;" />
+														</p>
+													</td>
+												</tr>
+												<tr valign="top">
+													<td style="border: none; padding: 0cm" width="143">
+														<p align="left">
+															<b
+																style="font-size: 10px; font-family: Arial;background-color: transparent;">Indexador.:</b>
+														</p>
+													</td>
+													<td style="border: none; padding: 0cm" width="403">
+														<p align="left">
+															<select required="true" name="select4"
+																style="font-size: 10px; font-family: Arial;background-color: transparent;">
+																<option value="TR" selected="selected">TR</option>
+																<option value="TR+Poupanca">TR+Poupanca</option>
+																<option value="IPCA">IPCA</option>
+																<option value="TAXA FIXA">TAXA FIXA</option>
+															</select>
+														</p>
+													</td>
+												</tr>
+												<tr valign="top">
+													<td style="border: none; padding: 0cm" width="143">
+														<p align="left">
+															<b
+																style="font-size: 10px; font-family: Arial;background-color: transparent;">Taxa
+																de Juros.: </b>
+														</p>
+													</td>
+													<td style="border: none; padding: 0cm" width="403">
+														<p align="left">
+															<input name="campo7" id="campo7" type="text" size="4"
+																maxlength="5" required="true"
+																onKeyUp="formatar('##,##', this)"
+																style="font-size: 10px; font-family: Arial;background-color: transparent;" /><label
+																style="font-size: 10px; font-family: Arial;background-color: transparent;">%
+																Juro a.a </label>
+														</p>
+													</td>
+												</tr>
+												<tr valign="top">
+													<td style="border: none; padding: 0cm" width="143">
+														<p align="left">
+															<b
+																style="font-size: 10px; font-family: Arial;background-color: transparent;">Sistema
+																de amortiza&ccedil;&atilde;o.:</b>
+														</p>
+													</td>
+													<td style="border: none; padding: 0cm" width="403">
+														<select required="true" name="select66"
+															style="font-size: 10px; font-family: Arial;background-color: transparent;">
+															<option selected="selected" value=""></option>
+															<option value="SAC">SAC</option>
+															<option value="PRICE">PRICE</option>
+														</select>
+													</td>
+												</tr>
+												<tr valign="top">
+													<td style="border: none; padding: 0cm" width="143">
+														<p align="left">
+															<b
+																style="font-size: 10px; font-family: Arial;background-color: transparent;">Parcela
+																m&aacute;xima aprovada.:</b>
+														</p>
+													</td>
+													<td style="border: none; padding: 0cm" width="403">
+														<p align="left">
+															<input name="campo8" type="text" id="campo8" size="12"
+																maxlength="12" required="true"
+																class="real input_geral real"
+																style="font-size: 10px; font-family: Arial;background-color: transparent;" />
+
+														</p>
+													</td>
+												</tr>
+												<tr valign="top">
+													<td style="border: none; padding: 0cm"><b
+															style="font-size: 10px; font-family: Arial;background-color: transparent;">Prazo
+															de validade.: </b></td>
+													<td style="border: none; padding: 0cm"><input name="campo9"
+															type="text" id="campo9" size="12" maxlength="10"
+															required="true" onKeyUp="formatar('##/##/####', this)"
+															style="color: red;font-weight: bold; font-style:normal; font-size: 10px; font-family: Arial;background-color: transparent;" />
+													</td>
+												</tr>
+												<tr valign="top">
+													<td style="border: none; padding: 0cm">&nbsp;</td>
+													<td style="border: none; padding: 0cm">&nbsp;</td>
+												</tr>
+												<tr valign="top">
+													<td style="border: none; padding: 0cm">
+														<b
+															style="font-size: 10px; font-family: Arial;background-color: transparent;">PROVIS&Atilde;O
+															DE TAXAS.: </b>
+													</td>
+													<td style="border: none; padding: 0cm"></td>
+												</tr>
+												<tr valign="top">
+													<td style="border: none; padding: 0cm"><b
+															style="font-size: 10px; font-family: Arial;background-color: transparent;">Taxas
+															BANCO.: </b></td>
+													<td style="border: none; padding: 0cm"><input id="taxabanco"
+															name="taxabanco" onchange="updateCustas()"
+															class="real input_geral real" type="text"
+															style="font-size: 10px; font-family: Arial;background-color: transparent;">
+													</td>
+												</tr>
+												<tr valign="top">
+													<td style="border: none; padding: 0cm"><b
+															style="font-size: 10px; font-family: Arial;background-color: transparent;">Taxas
+															ITBI.: </b></td>
+													<td style="border: none; padding: 0cm">
+														<div id="divAqConst"> Nesta modalidade o ITBI &eacute; calculado
+															sobre o TERRENO - Verificar c&oacute;digo tribut&aacute;rio
+															da cidade!</div>
+														<input id="itbi" name="itbi" onchange="updateCustas()"
+															class="real input_geral real" type="text"
+															style="font-size: 10px; font-family: Arial;background-color: transparent;">
+													</td>
+												</tr>
+												<tr valign="top">
+													<td style="border: none; padding: 0cm"><b
+															style="font-size: 10px; font-family: Arial;background-color: transparent;">Taxas
+															REGISTRO.: </b></td>
+													<td style="border: none; padding: 0cm"><input id="registro"
+															name="registro" onchange="updateCustas()"
+															class="real input_geral real" type="text"
+															style="font-size: 10px; font-family: Arial;background-color: transparent;">
+													</td>
+												</tr>
+												<tr valign="top">
+													<td style="border: none; padding: 0cm"><b
+															style="font-size: 10px; font-family: Arial;background-color: transparent;">Taxas
+															DESPACHANTE.: </b></td>
+													<td style="border: none; padding: 0cm"><input id="despachante"
+															name="despachante" onchange="updateCustas()" size=15
+															class="real input_geral real" type="text"
+															style="font-size: 10px; font-family: Arial;background-color: transparent;">
+													</td>
+												</tr>
+								</tr>
+								<tr valign="top">
+									<td style="border: none; padding: 0cm"><b
+											style="font-size: 10px; font-family: Arial;background-color: transparent;">Total
+											Estimativa de custas.:</b></td>
+									<td style="border: none; padding: 0cm"><input id="todascustas" readonly
+											name="todascustas" size=15 class="real input_geral real" type="text"
+											style="font-size: 10px; font-family: Arial;background-color: transparent;">
+									</td>
+								</tr>
+
+								</tbody>
+							</table>
+						</td>
+					</tr>
+					<tr valign="top">
+						<td width="100%" height="100%" style="border: none; padding: 0cm">
+							<p align="left">&nbsp;</p>
+						</td>
+					</tr>
+					<tr valign="top">
+						<td width="100%" height="100%" style="border: none; padding: 0cm">
+							<p align="left">
+								<b style="font-size: 10px; font-family: Arial;background-color: transparent;">Analista
+									respons&aacute;vel:</b>
+								<input name="CampoAnalista" type="text" id="CampoAnalista" size="60" required
+									autocomplete
+									style="font-size: 10px; font-family: Arial;background-color: transparent;"
+									onKeyPress="return ApenasLetras(event,this);" />
+							</p>
+						</td>
+					</tr>
+
+					<tr valign="top">
+						<td width="100%" height="100%" style="border: none; padding: 0">
+							<p align="left">
+								<b>
+									<label style="font-size: 10px; font-family: Arial;background-color: transparent;"
+										id="Xdata"></label>
+									<label style="font-size: 10px; font-family: Arial;background-color: transparent;"
+										id="Xhora"></label>
+								</b>
+							</p>
+						</td>
+					</tr>
+					<tr valign="top">
+						<td width="100%" height="100%" style="border: none; padding: 0cm">
+							<table cellpadding="0" cellspacing="0" width="100%">
+								<colgroup>
+									<col width="148*" />
+									<col width="108*" />
+								</colgroup>
+								<tbody>
+									<tr>
+										<td style="border: none; padding: 0cm" width="58%">
+											<p align="right" class="qrcodeCSS">
+												Para obeter as informa&ccedil;&otilde;es necess&aacute;rias para os
+												pr&oacute;ximos passos, escaneie o QR-Code.<br>
+												<strong class="qrcodeCSS">
+													Documentos para pr&oacute;xima etapa.
+													Clique no QR-CODE ou escaneie a imagem com seu celular, link com
+													info. detalhadas para dar andamento.
+												</strong>
+											</p>
+										</td>
+										<td width="42%" align="center" valign="middle"
+											style="border: none; padding: 0cm">
+											<div align="left">
+												<blockquote>
+													<p><a href='' id="previewLNK"><img src="nextStep/blank.png"
+																name="preview" width="100" height="100"
+																id="preview"></a></p>
+												</blockquote>
+											</div>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+				</td>
+				</tr>
+				<tr>
+					<td height="30" style="border: none; padding: 0cm" valign="top">
+						<p align="center"
+							style="line-height: 100%; orphans: 0; widows: 0; margin-left: 0.0cm; margin-right: 0.0cm; margin-bottom: 0cm; background: transparent">
+							<font style="font-size: 8px; font-family: Arial;background-color: transparent;">Este
+								material &eacute; de propriedade intelectual da Aspen informa&ccedil;&otilde;es
+								cadastrais e cobran&ccedil;a ltda (Aspen Correspondente Banc&aacute;rio), e a sua
+								reprodu&ccedil;&atilde;o &eacute; de uso exclusivo aos clientes e associados. </font>
+						</p>
+					</td>
+				</tr>
+				</tbody>
+				</table>
+				<div id="divEMPquest" style="display: none; padding: 10px;">
+				<!--#TAG update 12/04/24 -->
+					<h3>SELECIONE O EMPREENDIMENTO DESTA OPERAÇÃO</h3>
+					<label>
+						<input type="radio" name="radioOption" value="Vale dos Sinos" onchange="selectOption(this)">
+						Residencial Vale do Sinos <br>
+					</label>
+					<label>
+						<input type="radio" name="radioOption" value="Veredas de Capao" onchange="selectOption(this)">
+						Veredas de Capao - Binoto<br>
+					</label>
+					<label>
+						<input type="radio" name="radioOption" value="Residencial Helena" onchange="selectOption(this)">
+						Residencial Helena - Construmuller <br>
+					</label>
+					<label>
+						<input type="radio" name="radioOption" value="Versatti" onchange="selectOption(this)">
+						Versatti - Engefortes<br>
+					</label>
+					<label>
+						<input type="radio" name="radioOption" value="Terrace" onchange="selectOption(this)">
+						Terrace - Engefortes<br>
+					</label>
+					<label>
+						<input type="radio" name="radioOption" value="Vita" onchange="selectOption(this)">
+						Vita - Engefortes<br>
+					</label>
+				<!--#TAG update 12/04/24 -->
+				</div>
+				<div align=center" style="margin-bottom: 0cm"></div>
+				<br>
+				<button id="BTprint" onclick="myFunction()">IMPRIMIR.. </button>
+				<button id="BTprint" style="color: red;" onclick="LimparFormulario()">Limpar Campos </button>
+
+				<script>
+					function LimparFormulario() {
+						// Obter o formulário pelo ID
+						var formulario = document.getElementById("form1");
+						// Chamar o submit do formulário
+
+						if (confirm("Você tem certeza que deseja limpar os campos ?")) {
+							formulario.submit();
+							var formulario = document.getElementById("meuFormulario");
+							formulario.submit();
+						} else {
+							// O botão "Cancelar" foi clicado, não enviamos o formulário
+						}
+					}
+
+					function myFunction() {
+						var formulario = document.getElementById("form1");
+						if (formulario.checkValidity()) {
+							window.print();
+						} else {
+							// Campos obrigatórios estão faltando ou preenchidos incorretamente
+							// Implemente o comportamento desejado, como exibir uma mensagem de erro
+							console.log("Preencha todos os campos obrigatórios corretamente");
+						}
+					}
+				</script>
+
+				<script src="javascript/sonumerosinput.js" type="text/javascript"></script>
+				<script src="javascript/calcular.js" type="text/javascript"></script>
+				<script src="javascript/apenasletras.js" type="text/javascript"></script>
+				<!--<script src="javascript/labelchange.js" type="text/javascript"></script> -->
+
+				<!-- ############ DIV DESPACHANTE EMPREENDIMENTO ###################### -->
+				<script>
+				
+					function selectOption(radio) {
+						if (radio.value === "Vale dos Sinos" || radio.value === "Versatti" || radio.value === "Terrace" || radio.value === "Vita") {
+							VarBoleanEMP = 1;
+							document.getElementById("despachante").value = formatarValor(600); //#TAG update 12/04/24 
+						} else if (radio.value === "Veredas de Capao" || radio.value === "Residencial Helena" ) {
+							VarBoleanEMP = 1;
+							document.getElementById("despachante").value = formatarValor(800); //#TAG update 12/04/24 
+						}
+						updateCustas();
+						document.getElementById("divEMPquest").style.display = "none";
+					}
+
+					function formatarValor(valor) {
+						const formatado = valor.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+						return formatado;
+					}
+
+				</script>
+
+				<script type="text/javascript">
+					//CODIGO NAO PROPRIETÁRIO
+					$(".real").maskMoney({
+						prefix: 'R$ ',
+						thousands: '.',
+						decimal: ','
+					});
+
+					const format = {
+						minimumFractionDigits: 2,
+						style: 'currency',
+						currency: 'BRL'
+					};
+					//##############################################################################################
+					// Autor .: Roberto de paula fettuccia                                                         #
+					// Versão .: 2.0                                                                               #
+					// ###################################[ AVISO ]#################################################
+					// este código é de propriedade intelectual de aspen informações cadastrais e cobrança ltda    #
+					// sua utilização não está autorizada.                                                         #
+					// 51991413897 - Whatsapp                                                                      #
+					// 5130313792 - fixo                                                                           #
+					// negocios@correspondenteaspen.com                                                            #
+					//##############################################################################################
+					//VARIAVEIS GLOBAIS - presets
+
+					var AlvoCidade = '#selectCidades';
+					var AlvoModals = '#select2';
+					var AlvoValorTotal = '#campo1';
+					var AlvoFinanciado = '#campo2';
+					var AlvoFGTS = '#campo3';
+					var AlvoSubsidio = '#campo4';
+					var AlvoEntrada = '#campo5';
+					var AlvoCampoBanco = "#taxabanco";
+					var AlvoCampoDespachante = '#despachante';
+					var AlvoCampoITBI = "#itbi";
+					var AlvoCampoRegistro = "#registro";
+					var AlvoTotalRecursosBANCO = "#totalrecursosbanco";
+					var AlvoTotalCustos = "#todascustas";
+					//------------------NAO-MEXER-------------------------------
+					var sistemafinanceiro = 0; //variavel global [0]=SFH [1]=SFI
+					var selectElement = document.querySelector(AlvoCidade); //select CIDADE
+					var selectElementModalid = document.querySelector(AlvoModals); //select MODALIDADE
+					var cidadeSelecionada = ''; //VALOR EM BRANCO
+					var outputModalid = '';
+					var VarBoleanEMP = 0; //variavel global empreendimento 
+					var ITBIbolean = ''; //variavel global ITBI [0]=nao [1]=sim
+					var VarValorTotalIMOVEL = 0;
+					var VarValorFin = 0;
+					var VarValorFGTS = 0;
+					var VarValorSubsidio = 0;
+					var VarValorEntrada = 0;
+					var VarValorITBI = 0;       // valor do itbi 
+					var VarValorTaxaBANCO = 0;   // valor taxa do banco (rel+taxa)
+					var VarValorREGISTRO = 0;   // valor registro
+					var VarValorDESPACHANTE = 0;  // valor despachante
+					var VarValorRecursosBanco = VarValorFin + VarValorFGTS + VarValorSubsidio;
+					var VarValorTotalDISPESAS = VarValorITBI + VarValorTaxaBANCO + VarValorREGISTRO + VarValorDESPACHANTE;
+
+					//------------------NAO-MEXER-------------------------------
+
+					function proximospassos(imgselect) {
+						document.getElementById('preview').src = imgselect;
+						switch (imgselect) {
+							case 'nextStep/ProximosPassos.PCVA.AqConstrucao.png':
+								document.getElementById('previewLNK').href = 'https://drive.google.com/file/d/1yqjb3QqWEC8cXDEoepm44Oj5MF4dWer0/view?usp=share_link';
+								break;
+							case 'nextStep/ProximosPassos.PCVA.Usado.png':
+								document.getElementById('previewLNK').href = 'https://drive.google.com/file/d/1sChNrVxuxgqXtAaGJWQVQGmDX1ip0GpG/view?usp=share_link';
+								break;
+							case 'nextStep/ProximosPassos.PCVA.novo.png':
+								document.getElementById('previewLNK').href = 'https://drive.google.com/file/d/18MnR6awvFJ9is0k1YcRQ8N9gHdR4u0S4/view?usp=share_link';
+								break;
+							case 'nextStep/ProximosPassos.PCVA.Empreendimento.png':
+								document.getElementById('previewLNK').href = 'https://drive.google.com/file/d/1xmcowG7PQVmG-v6okU7pM47TR0M9unYT/view?usp=share_link';
+								break;
+							case 'nextStep/ProximosPassos.PCVA.Leilao.png':
+								document.getElementById('previewLNK').href = 'https://drive.google.com/file/d/1Zp0bm4RXP-qsGRSuApUL6PyLWNOAngft/view?usp=share_link';
+								break;
+							case 'nextStep/ProximosPassos.PCVA.ConstrTerrProprio.png':
+								document.getElementById('previewLNK').href = 'https://drive.google.com/file/d/1GIZxMpn48tvGdqAvAcYEVFFnOamCMWPR/view?usp=share_link';
+								break;
+							case 'nextStep/ProximosPassos.PCVA.AqConstrucao.png':
+								document.getElementById('previewLNK').href = 'https://drive.google.com/file/d/1GIZxMpn48tvGdqAvAcYEVFFnOamCMWPR/view?usp=share_link';
+								break;
+							case 'nextStep/ProximosPassos.PCVA.Usado.png':
+								document.getElementById('previewLNK').href = 'https://drive.google.com/file/d/1sChNrVxuxgqXtAaGJWQVQGmDX1ip0GpG/view?usp=share_link';
+								break;
+							case 'nextStep/ProximosPassos.PCVA.novo.png':
+								document.getElementById('previewLNK').href = 'https://drive.google.com/file/d/18MnR6awvFJ9is0k1YcRQ8N9gHdR4u0S4/view?usp=share_link';
+								break;
+							case 'nextStep/ProximosPassos.PCVA.Empreendimento.png':
+								document.getElementById('previewLNK').href = 'https://drive.google.com/file/d/1xmcowG7PQVmG-v6okU7pM47TR0M9unYT/view?usp=share_link';
+								break;
+							case 'nextStep/ProximosPassos.PCVA.Leilao.png':
+								document.getElementById('previewLNK').href = 'https://drive.google.com/file/d/1Zp0bm4RXP-qsGRSuApUL6PyLWNOAngft/view?usp=share_link';
+								break;
+							case 'nextStep/ProximosPassos.PCVA.ConstrTerrProprio.png':
+								document.getElementById('previewLNK').href = 'https://drive.google.com/file/d/1GIZxMpn48tvGdqAvAcYEVFFnOamCMWPR/view?usp=share_link';
+								break;
+							case 'nextStep/ProximosPassos.SBPE.Hab.AqConstrucao.png':
+								document.getElementById('previewLNK').href = 'https://drive.google.com/file/d/12HZGyjfvuUbdYzT5mE92xy2Z9i9S-a_F/view?usp=share_link';
+								break;
+							case 'nextStep/ProximosPassos.SBPE.Hab.ConstrTerrProprio.png':
+								document.getElementById('previewLNK').href = 'https://drive.google.com/file/d/1TGaMeJqoXn1D3EVwOcfSFSuoWH34i9sY/view?usp=share_link';
+								break;
+							case 'nextStep/ProximosPassos.SBPE.Hab.Usado.png':
+								document.getElementById('previewLNK').href = 'https://drive.google.com/file/d/16oYo7i8ja0e7U4zS4pfS45jnXxZly27u/view?usp=share_link';
+								break;
+							case 'nextStep/ProximosPassos.SBPE.Hab.NovoAvulso.png':
+								document.getElementById('previewLNK').href = 'https://drive.google.com/file/d/1ChPcoyatIHSlt2YqlYh1y0liN4KMufs-/view?usp=share_link';
+								break;
+							case 'nextStep/ProximosPassos.SBPE.Hab.NovoEmpreendimento.png':
+								document.getElementById('previewLNK').href = 'https://drive.google.com/file/d/1YEO535flsUhoMa6StyD72_q6CzwpKrmh/view?usp=share_link';
+								break;
+							case 'nextStep/ProximosPassos.SBPE.Hab.Leilao.png':
+								document.getElementById('previewLNK').href = 'https://drive.google.com/file/d/1Au3dCXABydorlpuH2CA6PLObDDbtmoWS/view?usp=share_link';
+								break;
+							case 'nextStep/ProximosPassos.SBPE.LoteUrbanizado.png':
+								document.getElementById('previewLNK').href = 'https://drive.google.com/file/d/11nuHedIakCDtvYuoSWoYVt0GRUxICZTC/view?usp=share_link';
+								break;
+							case 'nextStep/ProximosPassos.SBPE.CRF.png':
+								document.getElementById('previewLNK').href = 'https://drive.google.com/file/d/1gzSOuj2Eqy13kctYtowZrPe2qnVx0vML/view?usp=share_link';
+								break;
+							case 'nextStep/ProximosPassos.SBPE.Com.Novo.png':
+								document.getElementById('previewLNK').href = 'https://drive.google.com/file/d/1LIjaj4XVgAtetXgfw9kHrMyTGWkfeMV6/view?usp=share_link';
+								break;
+							case 'nextStep/ProximosPassos.SBPE.Com.Usado.png':
+								document.getElementById('previewLNK').href = "https://drive.google.com/file/d/1ndOGChbL0-lmYA6pOXNMZJWMmjsmAfXl/view?usp=share_link";
+								break;
+						}
+
+					}
+					function updateCustas() {
+
+						VarValorITBI = $(AlvoCampoITBI).maskMoney('unmasked')[0];
+						VarValorTaxaBANCO = $(AlvoCampoBanco).maskMoney('unmasked')[0];
+						VarValorREGISTRO = $(AlvoCampoRegistro).maskMoney('unmasked')[0];
+						if (VarBoleanEMP === 0) {
+							VarValorDESPACHANTE = $(AlvoCampoDespachante).maskMoney('unmasked')[0];
+						}
+						VarValorTotalDISPESAS = VarValorITBI + VarValorTaxaBANCO + VarValorREGISTRO + VarValorDESPACHANTE;
+						$(AlvoTotalCustos).val((VarValorTotalDISPESAS).toLocaleString('pt-BR', format));
+					}
+
+					function update() {
+						VarValorTotalIMOVEL = $(AlvoValorTotal).maskMoney('unmasked')[0]; //VarValorTotalIMOVEL == valor total do imóvel
+						VarValorFin = $(AlvoFinanciado).maskMoney('unmasked')[0]; //campo2 == valor financiado
+						VarValorFGTS = $(AlvoFGTS).maskMoney('unmasked')[0];
+						VarValorSubsidio = $(AlvoSubsidio).maskMoney('unmasked')[0]; //campo4 == 
+
+						VarValorRecursosBanco = VarValorFin + VarValorFGTS + VarValorSubsidio;
+						$(AlvoTotalRecursosBANCO).val((VarValorRecursosBanco).toLocaleString('pt-BR', format));
+						$(AlvoEntrada).val((VarValorTotalIMOVEL - VarValorFin - VarValorFGTS - VarValorSubsidio).toLocaleString('pt-BR', format));
+					}
+
+					function limpacampos() {
+						cidadeSelecionadaada = '';
+						ITBIbolean = '';
+					}
+
+					function leituraParametros() {
+						limpacampos();
+						cidadeSelecionada = selectElement.options[selectElement.selectedIndex].value;
+						outputModalid = selectElementModalid.options[selectElementModalid.selectedIndex].value;
+						//monitorarSelect();
+						update();
+						//VarValorTotalIMOVEL = $(AlvoValorTotal).maskMoney('unmasked')[0]; //VarValorTotalIMOVEL == valor total do imóvel
+						//VarValorFin = $(AlvoFinanciado).maskMoney('unmasked')[0]; //campo2 == valor financiado
+						//VarValorFGTS = $(AlvoFGTS).maskMoney('unmasked')[0];
+						//VarValorSubsidio = $(AlvoSubsidio).maskMoney('unmasked')[0]; //campo4 == 
+						//VarValorEntrada = $(AlvoEntrada).maskMoney('unmasked')[0]; //campo5 == entrada
+						validarmodalidade();
+					}
+					function validarmodalidade() { // INICIO -- VALIDA MODALIDADE
+						//seta select da cidade
+						//captura o value do select cidade
+						//alvo='#campo2';         //campo com valor financiado para calcular taxa do contrato pcva/procotista
+						//selectElementModalid = document.querySelector(elemento); // verifica a modalidade setada
+						switch (outputModalid) {
+							case 'nextStep/ProximosPassos.PCVA.Usado.png': //canoas
+								sistemafinanceiro = 0;
+								ITBIbolean = 1;
+								pcva_pcotista_taxas($(AlvoFinanciado).maskMoney('unmasked')[0], 'pcva'); //precisa passar parametro se pcva ou pró-cotista
+								itbicalcular(cidadeSelecionada);
+								break;
+							case 'nextStep/ProximosPassos.PCVA.AqConstrucao.png': //canoas
+								sistemafinanceiro = 0;
+								ITBIbolean = 0;
+								pcva_pcotista_taxas($(AlvoFinanciado).maskMoney('unmasked')[0], 'pcva'); //precisa passar parametro se pcva ou pró-cotista
+								itbicalcular(cidadeSelecionada);
+								break;
+							case 'nextStep/ProximosPassos.PCVA.novo.png': //canoas
+								sistemafinanceiro = 0;
+								ITBIbolean = 1;
+								pcva_pcotista_taxas($(AlvoFinanciado).maskMoney('unmasked')[0], 'pcva'); //precisa passar parametro se pcva ou pró-cotista
+								itbicalcular(cidadeSelecionada);
+								break;
+							case 'nextStep/ProximosPassos.PCVA.Empreendimento.png': //canoas
+								sistemafinanceiro = 0;
+								ITBIbolean = 1;
+								pcva_pcotista_taxas($(AlvoFinanciado).maskMoney('unmasked')[0], 'pcva'); //precisa passar parametro se pcva ou pró-cotista
+								itbicalcular(cidadeSelecionada);
+								break;
+							case 'nextStep/ProximosPassos.PCVA.Leilao.png': //canoas
+								sistemafinanceiro = 0;
+								ITBIbolean = 1;
+								pcva_pcotista_taxas($(AlvoFinanciado).maskMoney('unmasked')[0], 'pcva'); //precisa passar parametro se pcva ou pró-cotista
+								itbicalcular(cidadeSelecionada);
+								break;
+							case 'nextStep/ProximosPassos.PCVA.ConstrTerrProprio.png': //canoas
+								sistemafinanceiro = 0;
+								ITBIbolean = 0;
+								pcva_pcotista_taxas($(AlvoFinanciado).maskMoney('unmasked')[0], 'pcva'); //precisa passar parametro se pcva ou pró-cotista
+								itbicalcular(cidadeSelecionada);
+								break;
+							case 'nextStep/ProximosPassos.PCOTISTA.Usado.png': //canoas
+								sistemafinanceiro = 0;
+								ITBIbolean = 1;
+								pcva_pcotista_taxas($(AlvoFinanciado).maskMoney('unmasked')[0], 'pcotista'); //precisa passar parametro se pcva ou pró-cotista
+								itbicalcular(cidadeSelecionada);
+								break;
+							case 'nextStep/ProximosPassos.PCOTISTA.AqConstrucao.png': //canoas
+								sistemafinanceiro = 0;
+								ITBIbolean = 0;
+								pcva_pcotista_taxas($(AlvoFinanciado).maskMoney('unmasked')[0], 'pcotista'); //precisa passar parametro se pcva ou pró-cotista
+								itbicalcular(cidadeSelecionada);
+								break;
+							case 'nextStep/ProximosPassos.PCOTISTA.novo.png': //canoas
+								sistemafinanceiro = 0;
+								ITBIbolean = 1;
+								pcva_pcotista_taxas($(AlvoFinanciado).maskMoney('unmasked')[0], 'pcotista'); //precisa passar parametro se pcva ou pró-cotista]
+								itbicalcular(cidadeSelecionada);
+								break;
+							case 'nextStep/ProximosPassos.PCOTISTA.Empreendimento.png': //canoas
+								sistemafinanceiro = 0;
+								ITBIbolean = 1;
+								pcva_pcotista_taxas($(AlvoFinanciado).maskMoney('unmasked')[0], 'pcotista'); //precisa passar parametro se pcva ou pró-cotista
+								itbicalcular(cidadeSelecionada);
+								break;
+							case 'nextStep/ProximosPassos.PCOTISTA.Leilao.png': //canoas
+								sistemafinanceiro = 0;
+								ITBIbolean = 1;
+								pcva_pcotista_taxas($(AlvoFinanciado).maskMoney('unmasked')[0], 'pcotista'); //precisa passar parametro se pcva ou pró-cotista
+								itbicalcular(cidadeSelecionada);
+								break;
+							case 'nextStep/ProximosPassos.PCOTISTA.ConstrTerrProprio.png': //canoas
+								sistemafinanceiro = 0;
+								ITBIbolean = 0;
+								pcva_pcotista_taxas($(AlvoFinanciado).maskMoney('unmasked')[0], 'pcotista'); //precisa passar parametro se pcva ou pró-cotista
+								itbicalcular(cidadeSelecionada);
+								break;
+							case 'nextStep/ProximosPassos.SBPE.Hab.AqConstrucao.png':
+								sistemafinanceiro = 0;
+								ITBIbolean = 0;
+								produto = 1000;
+								txcontrato = 2039, 86; //-----------------ajustar a taxa por tipo de modalidade
+								showtaxacontrato(txcontrato, produto);
+								itbicalcular(cidadeSelecionada);
+								// ---------------------------------falta setar a taxa
+								break;
+							case 'nextStep/ProximosPassos.SBPE.Hab.ConstrTerrProprio.png':
+								sistemafinanceiro = 0;
+								ITBIbolean = 0;
+								produto = 1000;
+								txcontrato = 1816, 62; //-----------------ajustar a taxa por tipo de modalidade
+								showtaxacontrato(txcontrato, produto);
+								itbicalcular(cidadeSelecionada);
+								// ---------------------------------falta setar a taxa
+								break;
+							case 'nextStep/ProximosPassos.SBPE.Hab.Usado.png':
+								sistemafinanceiro = 0;
+								ITBIbolean = 1;
+								produto = 1000;
+								txcontrato = 954, 13; //-----------------ajustar a taxa por tipo de modalidade
+								showtaxacontrato(txcontrato, produto);
+								itbicalcular(cidadeSelecionada);
+								// ---------------------------------falta setar a taxa
+								break;
+							case 'nextStep/ProximosPassos.SBPE.Hab.NovoAvulso.png':
+								sistemafinanceiro = 0;
+								ITBIbolean = 1;
+								produto = 1000;
+								txcontrato = 954, 13; //-----------------ajustar a taxa por tipo de modalidade
+								showtaxacontrato(txcontrato, produto);
+								itbicalcular(cidadeSelecionada);
+								// ---------------------------------falta setar a taxa
+								break;
+							case 'nextStep/ProximosPassos.SBPE.Hab.NovoEmpreendimento.png':
+								sistemafinanceiro = 0;
+								ITBIbolean = 1;
+								produto = 1000;
+								txcontrato = 954, 13; //-----------------ajustar a taxa por tipo de modalidade
+								showtaxacontrato(txcontrato, produto);
+								itbicalcular(cidadeSelecionada);
+								// ---------------------------------falta setar a taxa
+								break;
+							case 'nextStep/ProximosPassos.SBPE.Hab.Leilao.png':
+								sistemafinanceiro = 0; //sfh
+								ITBIbolean = 1;
+								produto = 1000;
+								txcontrato = 954, 13; //-----------------ajustar a taxa por tipo de modalidade
+								showtaxacontrato(txcontrato, produto);
+								itbicalcular(cidadeSelecionada);
+								// ---------------------------------falta setar a taxa
+								break;
+							case 'nextStep/ProximosPassos.SBPE.LoteUrbanizado.png':
+								sistemafinanceiro = 1; //sfi
+								ITBIbolean = 1;
+								produto = 1000;
+								txcontrato = 3100; //-----------------ajustar a taxa por tipo de modalidade
+								showtaxacontrato(txcontrato, produto);
+								itbicalcular(cidadeSelecionada);
+								// ---------------------------------falta setar a taxa
+								break;
+							case 'nextStep/ProximosPassos.SBPE.CRF.png': //nextStep/ProximosPassos.SBPE.Com.Novo.png
+								sistemafinanceiro = 1;
+								ITBIbolean = 0;
+								window.alert('NAO ESQUECA QUE O IOF DEDUZ DO VALOR FINANCIADO, SALIENTE ISTO COM O CLIENTE!');
+								produto = 1000;
+								txcontrato = 3100; //-----------------ajustar a taxa por tipo de modalidade
+								showtaxacontrato(txcontrato, produto);
+								itbicalcular(cidadeSelecionada);
+								// ---------------------------------falta setar a taxa
+								break;
+							case 'nextStep/ProximosPassos.SBPE.Com.Novo.png': //nextStep/ProximosPassos.SBPE.Com.Usado.png
+								sistemafinanceiro = 1;
+								ITBIbolean = 1;
+								window.alert('NAO ESQUECA QUE O IOF DEDUZ DO VALOR FINANCIADO, SALIENTE ISTO COM O CLIENTE!');
+								produto = 1000;
+								txcontrato = 3100; //-----------------ajustar a taxa por tipo de modalidade
+								showtaxacontrato(txcontrato, produto);
+								itbicalcular(cidadeSelecionada);
+								// ---------------------------------falta setar a taxa
+								break;
+							case 'nextStep/ProximosPassos.SBPE.Com.Usado.png':
+								sistemafinanceiro = 1;
+								ITBIbolean = 1;
+								window.alert('NAO ESQUECA QUE O IOF DEDUZ DO VALOR FINANCIADO, SALIENTE ISTO COM O CLIENTE!');
+								produto = 1000;
+								txcontrato = 3100; //-----------------ajustar a taxa por tipo de modalidade
+								showtaxacontrato(txcontrato, produto);
+								itbicalcular(cidadeSelecionada);
+								// ---------------------------------falta setar a taxa
+								break;
+						}
+					} // FINAL -- VALIDA MODALIDADE
+
+					function pcva_pcotista_taxas(Vfinanciado, Vmodalid) { // taxas e produtos para pcva e procotista
+						var FatorCCFGTStx = '0.015';//taxa pcva e prócotista 1,5% 
+						var txcontrato = (Vfinanciado * FatorCCFGTStx);
+						var produto
+						if (Vmodalid == 'pcva') {
+							produto = 750;
+						}
+						else {
+							produto = 1000;
+						};
+						showtaxacontrato(txcontrato, produto);
+					}
+
+					//funcao que exibe o valor calculado como retorno das demais funcoes - VALOR DAS TAXAS
+					function showtaxacontrato(txmodal, valproduto) {
+						VarValorTaxaBANCO = txmodal + valproduto;
+						$(AlvoCampoBanco).val((VarValorTaxaBANCO).toLocaleString('pt-BR', format));
+					}
+					function showtaxaITBI(impostos) {
+						showTotaRecursosBanco();
+						showTotalcustas();
+						$(AlvoCampoITBI).val((impostos).toLocaleString('pt-BR', format));
+					}
+
+					function showTotalcustas() {
+						VarValorTotalDISPESAS = VarValorITBI + VarValorTaxaBANCO + VarValorREGISTRO + VarValorDESPACHANTE;
+						$(AlvoTotalCustos).val((VarValorTotalDISPESAS).toLocaleString('pt-BR', format));
+					}
+					function showTotaRecursosBanco() {
+						VarValorRecursosBanco = VarValorFin + VarValorFGTS + VarValorSubsidio;
+						$(AlvoTotalRecursosBANCO).val((VarValorRecursosBanco).toLocaleString('pt-BR', format));/////---------------------------------------------asdasdsadasdasdasdsdasd
+					}
+
+					function showtaxaDESPACHANTE(ValorDesp) { //só não escreve o calculo se calcula se não for empreendimento.
+						if (VarBoleanEMP === 0) { $(AlvoCampoDespachante).val((ValorDesp).toLocaleString('pt-BR', format)); }
+
+					}
+
+					function itbicalcular(city) { // INICIO - ITBICALCULAR
+						//função que calcula se a operação tratar de aquisicao do bem
+						// se itbi==1 calcula imposto itbi==0 nao calcula e atribui 0
+						VarValorREGISTRO = VarValorTotalIMOVEL * 0.01;
+						$(AlvoCampoRegistro).val((VarValorREGISTRO).toLocaleString('pt-BR', format));
+						switch (city) {
+							case 'cid.canoas': //canoas
+								if (ITBIbolean == '1') {
+									if (sistemafinanceiro == 0) {
+										VarValorITBI = ((VarValorFin * 0.005) + ((VarValorTotalIMOVEL - VarValorFin) * 0.03));
+										showtaxaITBI(VarValorITBI);
+									} else {
+										VarValorITBI = ((VarValorTotalIMOVEL) * 0.03);
+										showtaxaITBI(VarValorITBI);
+									}
+								} else {
+									VarValorITBI = 0;
+									showtaxaITBI(VarValorITBI);
+								}
+								VarValorDESPACHANTE = 800;
+								showtaxaDESPACHANTE(VarValorDESPACHANTE);
+								break;
+							case 'cid.poa': //porto alegre
+								if (ITBIbolean == '1') {
+									if (sistemafinanceiro == 0) {
+										VarValorITBI = (((VarValorFin + VarValorFGTS) * 0.005) + ((VarValorTotalIMOVEL - VarValorFin - VarValorFGTS) * 0.025));
+										showtaxaITBI(VarValorITBI);
+									}
+									else {
+										VarValorITBI = ((VarValorTotalIMOVEL - VarValorFin) * 0.025);
+										showtaxaITBI(VarValorITBI);
+									}
+								} else {
+									VarValorITBI = 0; //sem itbi
+									showtaxaITBI(VarValorITBI);
+								}
+								VarValorDESPACHANTE = 1000;
+								showtaxaDESPACHANTE(VarValorDESPACHANTE);
+								break;
+							case 'cid.nsr': //nova santa rita
+								if (ITBIbolean == '1') {
+									VarValorITBI = VarValorTotalIMOVEL * 0.025;
+									showtaxaITBI(VarValorITBI);
+								} else {
+									VarValorITBI = 0;
+									showtaxaITBI(VarValorITBI);
+								}
+								VarValorDESPACHANTE = 800;
+								showtaxaDESPACHANTE(VarValorDESPACHANTE);
+								break;
+							case 'cid.esteio': //esteio
+								if (ITBIbolean == '1') {
+									if (sistemafinanceiro == 0) {
+										VarValorITBI = (((VarValorFin + VarValorFGTS) * 0.005) + ((VarValorTotalIMOVEL - VarValorFin - VarValorFGTS) * 0.025));
+										showtaxaITBI(VarValorITBI);
+									}
+									else {
+										VarValorITBI = ((VarValorTotalIMOVEL - VarValorFin) * 0.025);
+										showtaxaITBI(VarValorITBI);
+									}
+								} else {
+									VarValorITBI = 0; //sem itbi
+									showtaxaITBI(VarValorITBI);
+								}
+								VarValorDESPACHANTE = 800;
+								showtaxaDESPACHANTE(VarValorDESPACHANTE);
+								break;
+							case 'cid.sapucaia': //sapucaia do sul
+								if (ITBIbolean == '1') {
+									if (sistemafinanceiro == 0) {
+										VarValorITBI = (((VarValorFin + VarValorFGTS) * 0.005) + ((VarValorTotalIMOVEL - VarValorFin - VarValorFGTS) * 0.025));
+										showtaxaITBI(VarValorITBI);
+									}
+									else {
+										VarValorITBI = ((VarValorTotalIMOVEL - VarValorFin) * 0.025);
+										showtaxaITBI(VarValorITBI);
+									}
+								} else {
+									VarValorITBI = 0; //sem itbi
+									showtaxaITBI(VarValorITBI);
+								}
+								VarValorDESPACHANTE = 800;
+								showtaxaDESPACHANTE(VarValorDESPACHANTE);
+								break;
+							case 'cid.nh': //novo hamburgo
+								if (ITBIbolean == '1') {
+									if (sistemafinanceiro == 0) {
+										VarValorITBI = (((VarValorFin + VarValorFGTS) * 0.005) + ((VarValorTotalIMOVEL - VarValorFin - VarValorFGTS) * 0.025));
+										showtaxaITBI(VarValorITBI);
+									}
+									else {
+										VarValorITBI = ((VarValorTotalIMOVEL - VarValorFin) * 0.025);
+										showtaxaITBI(VarValorITBI);
+									}
+								} else {
+									VarValorITBI = 0; //sem itbi
+									showtaxaITBI(VarValorITBI);
+								}
+								VarValorDESPACHANTE = 1000;
+								showtaxaDESPACHANTE(VarValorDESPACHANTE);
+								break;
+							case 'cid.viamao': //viamao
+								if (ITBIbolean == '1') {
+									if (sistemafinanceiro == 0) {
+										VarValorITBI = (((VarValorFin + VarValorFGTS) * 0.005) + ((VarValorTotalIMOVEL - VarValorFin - VarValorFGTS) * 0.025));
+										showtaxaITBI(VarValorITBI);
+									}
+									else {
+										VarValorITBI = ((VarValorTotalIMOVEL - VarValorFin) * 0.025);
+										showtaxaITBI(VarValorITBI);
+									}
+								} else {
+									VarValorITBI = 0; //sem itbi
+									showtaxaITBI(VarValorITBI);
+								}
+								VarValorDESPACHANTE = 1000;
+								showtaxaDESPACHANTE(VarValorDESPACHANTE);
+								break;
+							case 'cid.saoleo': //sao leopoldo
+								if (ITBIbolean == '1') {
+									if (sistemafinanceiro == 0) {
+										VarValorITBI = (((VarValorFin + VarValorFGTS) * 0.005) + ((VarValorTotalIMOVEL - VarValorFin - VarValorFGTS) * 0.025));
+										showtaxaITBI(VarValorITBI);
+									}
+									else {
+										VarValorITBI = ((VarValorTotalIMOVEL - VarValorFin) * 0.025);
+										showtaxaITBI(VarValorITBI);
+									}
+								} else {
+									VarValorITBI = 0; //sem itbi
+									showtaxaITBI(VarValorITBI);
+								}
+								VarValorDESPACHANTE = 1000;
+								showtaxaDESPACHANTE(VarValorDESPACHANTE);
+								break;
+							case 'cid.capao': //capao da canoa
+								if (ITBIbolean == '1') {
+									if (sistemafinanceiro == 0) {
+										VarValorITBI = (((VarValorFin + VarValorFGTS) * 0.005) + ((VarValorTotalIMOVEL - VarValorFin - VarValorFGTS) * 0.025));
+										showtaxaITBI(VarValorITBI);
+									}
+									else {
+										VarValorITBI = ((VarValorTotalIMOVEL - VarValorFin) * 0.025);
+										showtaxaITBI(VarValorITBI);
+									}
+								} else {
+									VarValorITBI = 0; //sem itbi
+									showtaxaITBI(VarValorITBI);
+								}
+								VarValorDESPACHANTE = 1200;
+								showtaxaDESPACHANTE(VarValorDESPACHANTE);
+								break;
+							case 'cid.xangrila': //xangrila
+								if (ITBIbolean == '1') {
+									if (sistemafinanceiro == 0) {
+										VarValorITBI = (((VarValorFin + VarValorFGTS) * 0.005) + ((VarValorTotalIMOVEL - VarValorFin - VarValorFGTS) * 0.025));
+										showtaxaITBI(VarValorITBI);
+									}
+									else {
+										VarValorITBI = ((VarValorTotalIMOVEL - VarValorFin) * 0.025);
+										showtaxaITBI(VarValorITBI);
+									}
+								} else {
+									VarValorITBI = 0; //sem itbi
+									showtaxaITBI(VarValorITBI);
+								}
+								VarValorDESPACHANTE = 1200;
+								showtaxaDESPACHANTE(VarValorDESPACHANTE);
+								break;
+							case 'cid.cachoeirinha': //cachoeirinha
+								if (ITBIbolean == '1') {
+									if (sistemafinanceiro == 0) {
+										VarValorITBI = (((VarValorFin + VarValorFGTS) * 0.005) + ((VarValorTotalIMOVEL - VarValorFin - VarValorFGTS) * 0.025));
+										showtaxaITBI(VarValorITBI);
+									}
+									else {
+										VarValorITBI = ((VarValorTotalIMOVEL - VarValorFin) * 0.025);
+										showtaxaITBI(VarValorITBI);
+									}
+								} else {
+									VarValorITBI = 0; //sem itbi
+									showtaxaITBI(VarValorITBI);
+								}
+								VarValorDESPACHANTE = 800;
+								showtaxaDESPACHANTE(VarValorDESPACHANTE);
+								break;
+							case 'cid.gravatai': //gravatai
+								if (ITBIbolean == '1') {
+									if (sistemafinanceiro == 0) {
+										VarValorITBI = (((VarValorFin + VarValorFGTS) * 0.005) + ((VarValorTotalIMOVEL - VarValorFin - VarValorFGTS) * 0.025));
+										showtaxaITBI(VarValorITBI);
+									}
+									else {
+										VarValorITBI = ((VarValorTotalIMOVEL - VarValorFin) * 0.025);
+										showtaxaITBI(VarValorITBI);
+									}
+								} else {
+									VarValorITBI = 0; //sem itbi
+									showtaxaITBI(VarValorITBI);
+								}
+								VarValorDESPACHANTE = 800;
+								showtaxaDESPACHANTE(VarValorDESPACHANTE);
+								break;
+							case 'cid.gramado': //gramado
+								if (ITBIbolean == '1') {
+									if (sistemafinanceiro == 0) {
+										VarValorITBI = (((VarValorFin + VarValorFGTS) * 0.005) + ((VarValorTotalIMOVEL - VarValorFin - VarValorFGTS) * 0.025));
+										showtaxaITBI(VarValorITBI);
+									}
+									else {
+										VarValorITBI = ((VarValorTotalIMOVEL - VarValorFin) * 0.025);
+										showtaxaITBI(VarValorITBI);
+									}
+								} else {
+									VarValorITBI = 0; //sem itbi
+									showtaxaITBI(VarValorITBI);
+								}
+								VarValorDESPACHANTE = 1200;
+								showtaxaDESPACHANTE(VarValorDESPACHANTE);
+								break;
+							case 'cid.canela': //canela
+								if (ITBIbolean == '1') {
+									if (sistemafinanceiro == 0) {
+										VarValorITBI = (((VarValorFin + VarValorFGTS) * 0.005) + ((VarValorTotalIMOVEL - VarValorFin - VarValorFGTS) * 0.025));
+										showtaxaITBI(VarValorITBI);
+									}
+									else {
+										VarValorITBI = ((VarValorTotalIMOVEL - VarValorFin) * 0.025);
+										showtaxaITBI(VarValorITBI);
+									}
+								} else {
+									VarValorITBI = 0; //sem itbi
+									showtaxaITBI(VarValorITBI);
+								}
+								VarValorDESPACHANTE = 1200;
+								showtaxaDESPACHANTE(VarValorDESPACHANTE);
+								break;
+							case 'cid.osorio': //osorio
+								if (ITBIbolean == '1') {
+									if (sistemafinanceiro == 0) {
+										VarValorITBI = (((VarValorFin + VarValorFGTS) * 0.005) + ((VarValorTotalIMOVEL - VarValorFin - VarValorFGTS) * 0.025));
+										showtaxaITBI(VarValorITBI);
+									}
+									else {
+										VarValorITBI = ((VarValorTotalIMOVEL - VarValorFin) * 0.025);
+										showtaxaITBI(VarValorITBI);
+									}
+								} else {
+									VarValorITBI = 0; //sem itbi
+									showtaxaITBI(VarValorITBI);
+								}
+								VarValorDESPACHANTE = 1200;
+								showtaxaDESPACHANTE(VarValorDESPACHANTE);
+								break;
+							case 'cid.tramandai': //tramandai
+								if (ITBIbolean == '1') {
+									if (sistemafinanceiro == 0) {
+										VarValorITBI = (((VarValorFin + VarValorFGTS) * 0.005) + ((VarValorTotalIMOVEL - VarValorFin - VarValorFGTS) * 0.025));
+										showtaxaITBI(VarValorITBI);
+									}
+									else {
+										VarValorITBI = ((VarValorTotalIMOVEL - VarValorFin) * 0.025);
+										showtaxaITBI(VarValorITBI);
+									}
+								} else {
+									VarValorITBI = 0; //sem itbi
+									showtaxaITBI(VarValorITBI);
+								}
+								VarValorDESPACHANTE = 1200;
+								showtaxaDESPACHANTE(VarValorDESPACHANTE);
+								break;
+
+						}
+
+					} // FIM - ITBICALCULAR
+					//##########################################################################################################
+					//------- funçao para mostrar ou remover itbi
+					function monitorarSelect() {
+						var select = document.getElementById('select2');
+						var div = document.getElementById('divAqConst');
+						var inputITBI = document.getElementById('itbi');
+						var valorSelecionado = select.value;
+						// Verifica se o valor selecionado corresponde ao valor desejado
+						if (valorSelecionado === 'nextStep/ProximosPassos.PCVA.AqConstrucao.png' || valorSelecionado === 'nextStep/ProximosPassos.SBPE.Hab.AqConstrucao.png') {
+							div.style.display = 'block'; // Exibe a div
+							inputITBI.style.display = 'none';
+							VarBoleanEMP = 0;
+						} else if (valorSelecionado === 'nextStep/ProximosPassos.SBPE.Hab.NovoEmpreendimento.png' || valorSelecionado === 'nextStep/ProximosPassos.PCVA.Empreendimento.png') {
+							div = document.getElementById('divEMPquest');
+							div.style.display = 'block'; // Oculta a div 
+							VarBoleanEMP = 1;
+						} else {
+							div.style.display = 'none'; // Oculta a div
+							inputITBI.style.display = 'block';
+							VarBoleanEMP = 0;
+						}
+
+					}
+				</script>
+
+
+			</div>
+		</form>
+	</div>
+
+</body>
+
+</html>
